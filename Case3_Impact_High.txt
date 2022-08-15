@@ -1,0 +1,22 @@
+Case 2 (Medium)
+Data team reported issues while creating new promotions for device type - mobile and tablets
+
+Date - DD/MM/YYYY
+Impact - Medium
+Priority - Medium
+
+Teams Involved - Production Support, Data team
+
+Description:
+Data team reported at HH:MM on DD/MM/YYYY that they created a new promotion (10% off) for mobile and tablet devices, however when promotion is applied with below config, the discount is not getting applied. Helpdesk escalated the request to production support at HH:MM
+
+Resolution:
+[DD/MM HH:MM] - Reproduced issue based on details shared by data team (support ticket - INCXXXXXXXX).
+[DD/MM HH:MM] - Looking at data setup did not provide any hints. Confirmed with data team and support then manually created the same data setup for promotion on a lower environment. Issue reproducible in lower environment.
+[DD/MM HH:MM] - Upon debugging, issue was identified on the accessory page (page 4 in the product flow). Accessory selected by data team has a promotion (promo1) which is mutually exclusive to all others.
+[DD/MM HH:MM] - As a work around, data team will edit the existing promotion to add accessory in exception list.
+[DD/MM HH:MM] -  Created INCXXXXXX for support to fix the validation logic on the coupons page. The user should be displayed an error when trying to add a new coupon when cart contains item that are mutually exclusive.
+[DD/MM HH:MM] - Incident marked as pending resolution - support team and downgraded.
+
+Notes:
+Added validation logic code for coupon page. When user tries to add a coupon, code will check against all items in cart and their promo/coupon configuration. If any mismatch is found, user will be hard stopped with error with necessary information.
