@@ -1,0 +1,23 @@
+Case 1 (simple)
+Few users report slow loading of UI/website.
+
+Date - DD/MM/YYYY
+Impact - Low
+Priority - Low
+
+Teams Involved - Production Support, User
+
+Description:
+User called at HH:MM on DD/MM/YYYY to report lag on Device Listing Page. Helpdesk escalated the request to production support at HH:MM
+
+Resolution:
+[DD/MM HH:MM] - Asked user to check internet connection, clear cache and also to check browser compatibility.
+[DD/MM HH:MM] - Issue was not resolved. Support team checked website performance report on AppDynamics UI. All utilizations were under thresholds with no spike. Load balancing was working as expected.
+[DD/MM HH:MM] - Checked logs and identified few requests apis taking longer to get response back from the code base/db. Tried to reproduce the issue on remote and local machine. Issue not reproduced.
+[DD/MM HH:MM] - Asked user for location, and then locally modified the location to match the user. Issue reproduced both in local and remote. API retrieving the device list is getting timed out.
+[DD/MM HH:MM] - During debugging it was found to be a data setup issue for product available in user address/state.
+[DD/MM HH:MM] - Since issue is not critical, created an incident for data setup team with details. Incident number -INCXXXXXXX.
+[DD/MM HH:MM] - Incident marked as pending resolution - data team and downgraded.
+
+Notes:
+Advise dev team to add more logging for the product filtering logic in the code to capture issues.

@@ -1,22 +1,30 @@
-Case 2 (Medium)
-Data team reported issues while creating new promotions for device type - mobile and tablets
+Case 3 (High)
+Wrong price calculation for Device A, B, C + any plan combination
 
 Date - DD/MM/YYYY
-Impact - Medium
-Priority - Medium
+Impact - High
+Priority - High
 
-Teams Involved - Production Support, Data team
+Teams Involved - Production Support, Data team, Business Team, Dev Team and QA Team
 
 Description:
-Data team reported at HH:MM on DD/MM/YYYY that they created a new promotion (10% off) for mobile and tablet devices, however when promotion is applied with below config, the discount is not getting applied. Helpdesk escalated the request to production support at HH:MM
+Business team reported at HH:MM on DD/MM/YYYY a mismatch of total cost when user adds device A, B or C to cart with any plan. Helpdesk escalated the request to production support at HH:MM
+
+Additional notes: Since its during holiday season, the impact is high. Business will check with finance team for further impact analysis as issue took 4-5 hours for resolution.
 
 Resolution:
-[DD/MM HH:MM] - Reproduced issue based on details shared by data team (support ticket - INCXXXXXXXX).
-[DD/MM HH:MM] - Looking at data setup did not provide any hints. Confirmed with data team and support then manually created the same data setup for promotion on a lower environment. Issue reproducible in lower environment.
-[DD/MM HH:MM] - Upon debugging, issue was identified on the accessory page (page 4 in the product flow). Accessory selected by data team has a promotion (promo1) which is mutually exclusive to all others.
-[DD/MM HH:MM] - As a work around, data team will edit the existing promotion to add accessory in exception list.
-[DD/MM HH:MM] -  Created INCXXXXXX for support to fix the validation logic on the coupons page. The user should be displayed an error when trying to add a new coupon when cart contains item that are mutually exclusive.
-[DD/MM HH:MM] - Incident marked as pending resolution - support team and downgraded.
+[DD/MM HH:MM] - Issue reported by helpdesk (support ticket - INCXXXXXXXX).
+[DD/MM HH:MM] - Issue reproducible in prod environment. As support was not aware if exact impact, business team and data team were paged.
+[DD/MM HH:MM] - Support checked data setup. No issues found.
+[DD/MM HH:MM] - Business team responded to page. The issue is upgraded as high priority. Dev team is paged out while support tried to reproduce issue in lower environment. Issue not reproducible in lower environment
+[DD/MM HH:MM] - Dev team responded and was not sure of the root cause. Support has requested for decision on prod data duplication on lower environment for debugging purpose.
+[DD/MM HH:MM] - Request approved. Data duplicated in 1 hour in both lower and prod parallel environment DBs
+[DD/MM HH:MM] - Dev team found code issue for price calculation in monthly installment logic.
+[DD/MM HH:MM] - Emergency change control #CCxxxxxx created. Testing team (QA) paged out for quick testing in prod parallel environment for the fix
+[DD/MM HH:MM] - UAT testing successful, code deployed to production by dev team.
+[DD/MM HH:MM] - Issue resolved in prod. Clearance provided by all teams involved.
+[DD/MM HH:MM] - Issue downgraded.
 
 Notes:
-Added validation logic code for coupon page. When user tries to add a coupon, code will check against all items in cart and their promo/coupon configuration. If any mismatch is found, user will be hard stopped with error with necessary information.
+Support to schedule a table top exercise for the issue and involve dev team, data team to avoid future occurrence
+Ask dev team for a post mortem on the issue
